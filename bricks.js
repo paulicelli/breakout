@@ -10,24 +10,13 @@ export default class Brick extends Sprite {
     }
 
     get bricks() {
-        let bricksArray =  []; // Array(this.columns * this.rows).fill({ x: 0, y: 0 });
+        let bricksArray = new Array(this.columns * this.rows).fill().map( () => ({ x: 0, y: 0, w: 50, h: 20 }) );
         for (let index = 0; index < (this.columns * this.rows); index++) {
-            bricksArray[index] = {  x: ((index % this.columns) * (50 + this.margin)) + this.offset,
-                                    y: (Math.floor(index / this.columns) * (20 + this.margin)) + this.offset,
-                                    w: 50,
-                                    h: 20 };
+            bricksArray[index].x = ((index % this.columns) * (50 + this.margin)) + this.offset;
+            bricksArray[index].y = (Math.floor(index / this.columns) * (20 + this.margin)) + this.offset;
         }
         return bricksArray;
     }
-
-    // get bricks() {
-    //     let bricksArray =  Array(this.columns * this.rows).fill({ x: 0, y: 0, w: 50, h: 20 });
-    //     for (let index = 0; index < (this.columns * this.rows); index++) {
-    //         bricksArray[index].x = ((index % this.columns) * (50 + this.margin)) + this.offset;
-    //         bricksArray[index].y = (Math.floor(index / this.columns) * (20 + this.margin)) + this.offset;
-    //     }
-    //     return bricksArray;
-    // }
 
     draw(ctx) {
         for (let brick of this.bricks) {
